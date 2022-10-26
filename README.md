@@ -35,4 +35,9 @@ Invoke-Webrequest -uri 'https://go.dev/dl/go1.19.2.windows-amd64.msi' -OutFile '
 
 # Install
 .\go.msi /passive
+
+# Update Path 
+
+# or using Chocolatey
+choco install go
 ```
