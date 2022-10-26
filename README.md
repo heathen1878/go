@@ -1,10 +1,6 @@
 # Go
 
-## Overview
-
-Developed originally by Google...
-Docker and Kubernetes are written in Go...
-Go can be compiled into a binary...
+I'm learning Go primarily to aid my understanding of Terratest and I think it'll be worthwhile from a career point-of-view.
 
 ## Getting started
 
