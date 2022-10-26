@@ -4,6 +4,8 @@ I'm learning Go primarily to aid my understanding of Terratest and I think it'll
 
 ## Getting started
 
+Go packages can be found (here)[https://pkg.go.dev/]
+
 ### Installing on Linux
 
 ```Bash
@@ -41,7 +43,33 @@ notepad $PROFILE
 # Update Path
 $env:Path += ';C:\Program Files\Go\bin\'
 
+# Reload PowerShell profile
+. $PROFILE
 
 # or using Chocolatey
 choco install go
 ```
+
+## Install some prerequisites
+
+Install the Go VsCode extension
+
+```PowerShell
+# Install the Go Language Server - integrated with vscode.
+go install -v golang.org/x/tools/gopls@latest
+
+# Install Go Code autocompletion.
+go install -v github.com/stamblerre/gocode@latest
+
+# Install Go Imports for updating import references.
+go install -v golang.org/x/tools/cmd/goimports@latest
+```
+
+## Run your go code
+
+To test your go code run go run <filename>.go e.g. 
+
+```PowerShell
+go run main.go
+```
+
