@@ -4,7 +4,8 @@ I'm learning Go primarily to aid my understanding of Terratest and I think it'll
 
 ## Getting started
 
-Go packages can be found (here)[https://pkg.go.dev/]
+Go packages can be found [here](https://pkg.go.dev/)
+Go documentation can be found [here](https://go.dev/doc/)
 
 ### Installing on Linux
 
@@ -72,4 +73,18 @@ To test your go code run go run <filename>.go e.g.
 ```PowerShell
 go run main.go
 ```
+
+## Build your code
+
+To build your code run `go build` within your code directory
+
+```PowerShell
+go build 
+```
+
+## Types
+
+### String
+
+Can be `""` for single line or `\``\` for multiline - strings are immutable, so to modify a string you need to create a new one.
 

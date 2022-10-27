@@ -13,7 +13,7 @@ This is a multiline \n
 string.
 	`)
 
-	// Intepreted string literals
+	// Intepreted string literals i.e. process whatever is between the double quotes
 	fmt.Println("😀")
 	fmt.Println("\u2272")
 
