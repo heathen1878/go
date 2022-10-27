@@ -5,6 +5,7 @@ I'm learning Go primarily to aid my understanding of Terratest and I think it'll
 ## Getting started
 
 Go packages can be found [here](https://pkg.go.dev/)
+
 Go documentation can be found [here](https://go.dev/doc/)
 
 ### Installing on Linux
@@ -53,7 +54,7 @@ choco install go
 
 ## Install some prerequisites
 
-Install the Go VsCode extension
+Install the Go vs code extension and the following required tools...
 
 ```PowerShell
 # Install the Go Language Server - integrated with vscode.
