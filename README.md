@@ -65,6 +65,12 @@ go install -v github.com/stamblerre/gocode@latest
 
 # Install Go Imports for updating import references.
 go install -v golang.org/x/tools/cmd/goimports@latest
+
+# Install DLV debugger
+go install -v github.com/go-delve/delve/cmd/dlv@latest
+
+# Install StaticCheck for code analysis
+go install honnef.co/go/tools/cmd/staticcheck@latest
 ```
 
 ## Run your go code
