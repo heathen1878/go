@@ -93,5 +93,16 @@ go build
 
 ### Module Dependencies
 
-The Go documenation [here](https://go.dev/doc/tutorial/call-module-code) explains it clearly.
+The Go documenation [here](https://go.dev/doc/tutorial/call-module-code) explains it clearly but in summary...
 
+```Shell
+# Within the module directory
+# go mod init 'path to the module' e.g.
+go mod init github.com/heathen1878/go/modules/message
+
+# if the module isn't publicly available then you can issue a replace directive within the calling module directory
+go mod edit --replace github.com/heathen1878/go/modules/message=../message
+
+# Then run go mod tidy to update the module dependencies within the calling module directory
+go mod tidy
+```
