@@ -44,15 +44,15 @@ func main() {
 		if b%2 == 0 { //get the remainder of 'b' to work out whether its even or not.
 			fmt.Println(b, "is even")
 			b++
-			continue
+			continue // continue the loop - do not execute any more code
 		} else if b == 5 {
 			fmt.Println(b, "is 5")
-			fmt.Println("exiting")
-			break
+			break //break from the loop
 		}
 
 		fmt.Println(b, "is odd")
 		b++
 	}
 
+	fmt.Println("Finished")
 }

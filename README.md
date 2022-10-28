@@ -89,9 +89,9 @@ To build your code run `go build` within your code directory
 go build 
 ```
 
-## Types
+## Modules
 
-### String
+### Module Dependencies
 
-Can be `""` for single line or `\``\` for multiline - strings are immutable, so to modify a string you need to create a new one.
+The Go documenation [here](https://go.dev/doc/tutorial/call-module-code) explains it clearly.
 
