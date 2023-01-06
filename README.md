@@ -8,6 +8,8 @@ Go packages can be found [here](https://pkg.go.dev/)
 
 Go documentation can be found [here](https://go.dev/doc/)
 
+Go tutorials can be found [here](https://go.dev/doc/tutorial/)
+
 ### Installing on Linux
 
 ```Bash
