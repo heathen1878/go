@@ -2,69 +2,142 @@ package calculator_test
 
 import (
 	"calculator"
+	"math"
 	"testing"
 )
 
-func TestOperator(t *testing.T) {
+func TestAdd(t *testing.T) {
+	// Run tests in parallel
+	t.Parallel()
+
+	// define a struct to hold all the tests
+	type test_case struct {
+		a, b float64
+		want float64
+	}
+
+	test_cases := []test_case{
+		{a: 2, b: 2, want: 4},
+		{a: 0, b: 5, want: 5},
+		{a: -1, b: 0, want: -1},
+		{a: 1, b: -1, want: 0},
+		{a: -1, b: -1, want: -2},
+	}
+
+	for _, test_case := range test_cases {
+		got := calculator.Add(test_case.a, test_case.b)
+		if got != test_case.want {
+			t.Errorf("Addition of %.1f and %.1f resulted in %.1f, wanted %.1f", test_case.a, test_case.b, got, test_case.want)
+		}
+	}
+
+}
+
+func TestSubtract(t *testing.T) {
+	// Run tests in parallel
+	t.Parallel()
+
+	// define a struct to hold all the tests
+	type test_case struct {
+		a, b float64
+		want float64
+	}
+
+	test_cases := []test_case{
+		{a: 0, b: 1, want: -1},
+		{a: 10, b: 0, want: 10},
+		{a: -1, b: -1, want: 0},
+		{a: -2, b: -1, want: -1},
+		{a: -2, b: -2, want: 0},
+	}
+
+	for _, test_case := range test_cases {
+		got := calculator.Subtract(test_case.a, test_case.b)
+		if got != test_case.want {
+			t.Errorf("Subtraction of %.1f and %.1f resulted in %.1f, wanted %.1f", test_case.a, test_case.b, got, test_case.want)
+		}
+	}
+
+}
+
+func TestMultiply(t *testing.T) {
+	// Run tests in parallel
+	t.Parallel()
+
+	// define a struct to hold all the tests
+	type test_case struct {
+		a, b float64
+		want float64
+	}
+
+	test_cases := []test_case{
+		{a: 0, b: 1, want: 0},
+		{a: 10, b: 1, want: 10},
+		{a: 6, b: 6, want: 36},
+		{a: -2, b: -3, want: 6},
+		{a: -1, b: 2, want: -2},
+	}
+
+	for _, test_case := range test_cases {
+		got := calculator.Multiply(test_case.a, test_case.b)
+		if got != test_case.want {
+			t.Errorf("Multiplication of %.1f and %.1f resulted in %.1f, wanted %.1f", test_case.a, test_case.b, got, test_case.want)
+		}
+	}
+
+}
+
+func TestDivide(t *testing.T) {
 	t.Parallel()
 
 	// variables
 	type test_case struct {
-		fn           func(float64, float64) (float64, error)
-		a, b         float64
-		want         float64
-		err_expected bool
+		a, b float64
+		want float64
 	}
 
 	test_cases := []test_case{
-		{fn: calculator.Add, a: 2, b: 2, want: 4, err_expected: false},
-		{fn: calculator.Add, a: 0, b: 5, want: 5, err_expected: false},
-		{fn: calculator.Add, a: -1, b: 0, want: -1, err_expected: false},
-		{fn: calculator.Add, a: 1, b: -1, want: 0, err_expected: false},
-		{fn: calculator.Add, a: -1, b: -1, want: -2, err_expected: false},
-		{fn: calculator.Subtract, a: 0, b: 1, want: -1, err_expected: false},
-		{fn: calculator.Subtract, a: 10, b: 0, want: 10, err_expected: false},
-		{fn: calculator.Subtract, a: -1, b: -1, want: 0, err_expected: false},
-		{fn: calculator.Subtract, a: -2, b: -1, want: -1, err_expected: false},
-		{fn: calculator.Subtract, a: -2, b: -2, want: 0, err_expected: false},
-		{fn: calculator.Multiply, a: 0, b: 1, want: 0, err_expected: false},
-		{fn: calculator.Multiply, a: 10, b: 1, want: 10, err_expected: false},
-		{fn: calculator.Multiply, a: 6, b: 6, want: 36, err_expected: false},
-		{fn: calculator.Multiply, a: -2, b: -3, want: 6, err_expected: false},
-		{fn: calculator.Multiply, a: -1, b: 2, want: -2, err_expected: false},
-		{fn: calculator.Divide, a: 3, b: 0, want: 999, err_expected: true},
-		{fn: calculator.Divide, a: 3, b: 3, want: 1, err_expected: false},
+		{a: 3, b: 3, want: 1},
+		{a: -1, b: -1, want: 1},
+		{a: 1, b: 3, want: 0.333333},
 	}
 
 	for _, test_case := range test_cases {
-		got, err := test_case.fn(test_case.a, test_case.b)
-		err_recieved := (err != nil)
+		got, err := calculator.Divide(test_case.a, test_case.b)
 
-		if err_recieved != test_case.err_expected {
-			t.Fatalf("Divide (%.1f, %.1f): unexpected error status: %v", test_case.a, test_case.b, err)
+		if err != nil {
+			t.Fatalf("Divide (%f, %f): unexpected error status: %v", test_case.a, test_case.b, err)
 		}
 
-		if !test_case.err_expected && test_case.want != got {
-			t.Errorf("(%.1f, %.1f): Want %.1f, got %.1f", test_case.a, test_case.b, test_case.want, got)
+		if !CloseEnough(test_case.want, got, 0.001) {
+			t.Errorf("Division of %f and %f resulted in %f, wanted %f", test_case.a, test_case.b, got, test_case.want)
 		}
 	}
 
+}
+
+func TestDivideInvalid(t *testing.T) {
+	t.Parallel()
+
+	_, err := calculator.Divide(1, 0)
+	if err == nil {
+		t.Error("Should return divide by 0 error")
+	}
 }
 
 func TestSquareRoot(t *testing.T) {
 	t.Parallel()
 
 	type test_case struct {
-		fn           func(float64) (float64, error)
 		a            float64
 		want         float64
 		err_expected bool
 	}
 
 	test_cases := []test_case{
-		{fn: calculator.SquareRoot, a: 1, want: 1, err_expected: false},
-		{fn: calculator.SquareRoot, a: -1, want: 999, err_expected: true},
-		{fn: calculator.SquareRoot, a: 3, want: 9, err_expected: false},
+		{a: 1, want: 1, err_expected: false},
+		{a: -1, want: 999, err_expected: true},
+		{a: 9, want: 3, err_expected: false},
 	}
 
 	for _, test_case := range test_cases {
@@ -81,4 +154,9 @@ func TestSquareRoot(t *testing.T) {
 
 	}
 
+}
+
+func CloseEnough(a, b, tolerance float64) bool {
+	// this is used to set the tolerance of two numbers being considered equal
+	return math.Abs(a-b) <= tolerance
 }
