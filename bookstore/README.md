@@ -6,6 +6,12 @@
 
 types that begin with a capital letter are exported and can be used outside of the package whereas lowercase types are private to the package.
 
+```Go
+type Book struct {
+    
+}
+```
+
 ### Tests
 
 Test coverage can be determined by running `go test -cover`
@@ -17,4 +23,4 @@ go test -coverprofile=coverage.out
 go tool cover -html=coverage.out
 ```
 
-_Test behaviours not functions_ as covered is not the same as tested.
+Test _behaviours not functions_ as code covered is not the same as code tested.
