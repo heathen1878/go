@@ -5,7 +5,7 @@ name: Generate Go release Artifacts for Hex To Base64
 on:
   release:
     types: 
-        - created
+      - created
 
 # workflow tasks
 jobs:
