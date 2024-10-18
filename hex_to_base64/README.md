@@ -15,5 +15,5 @@ go test -v ./...
 ## Build
 
 ```shell
-go build .
+go build -C cmd/hextobase64 -o ./tmp/ .
 ```
