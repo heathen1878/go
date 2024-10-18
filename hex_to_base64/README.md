@@ -17,4 +17,3 @@ go test -v ./...
 ```shell
 go build .
 ```
-
