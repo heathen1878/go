@@ -1,0 +1,31 @@
+# workflow name
+name: Generate Go release Artifacts for Hex To Base64
+
+# on events
+on:
+  release:
+    types: 
+        - created
+
+# workflow tasks
+jobs:
+  generate:
+    name: Generate cross-platform builds
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./hex-to-base64/cmd/hextobase64
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Generate build files
+        uses: thatisuday/go-cross-build@v1
+        with:
+            platforms: 'linux/amd64, windows/amd64'
+            package: ''
+            name: 'hextobase64'
+            compress: 'false'
+            dest: './dist'
